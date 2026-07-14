@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS registration_forms (
 CREATE TABLE IF NOT EXISTS company_users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
-  role TEXT NOT NULL, -- 'Admin', 'RH', 'Técnico'
+  role TEXT NOT NULL, -- 'Admin', 'RH', 'Técnico', 'Diseño Gráfico', 'Ventas', 'Closers', 'Openers', 'Customer Service', 'Programador'
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -79,3 +79,12 @@ CREATE POLICY "Public registration_forms policy" ON registration_forms FOR ALL T
 
 DROP POLICY IF EXISTS "Public company_users policy" ON company_users;
 CREATE POLICY "Public company_users policy" ON company_users FOR ALL TO public USING (true) WITH CHECK (true);
+
+-- NOTA PARA EL ADMINISTRADOR / ACTUALIZACIÓN DE ROLES:
+-- Si ya tienes la tabla 'company_users' en tu base de datos de Supabase, NO es necesario volver a crearla
+-- ni borrarla (lo cual daría error de "la tabla ya existe" o borraría tus datos existentes).
+-- Como la columna 'role' es de tipo TEXT, acepta de forma nativa los nuevos roles:
+-- ('Diseño Gráfico', 'Ventas', 'Closers', 'Openers', 'Customer Service', 'Programador')
+-- sin requerir ninguna modificación o alteración estructural en la base de datos.
+-- El siguiente comando ALTER es 100% seguro de ejecutar y garantiza que la columna acepte texto de forma ilimitada:
+-- ALTER TABLE company_users ALTER COLUMN role TYPE TEXT;
