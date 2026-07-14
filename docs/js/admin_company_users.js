@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       usersList.innerHTML = `
         <div class="text-center py-12 text-gray-400">
           <i class="fa-solid fa-users-slash text-4xl mb-2 text-blue-100 block"></i>
-          No hay colaboradores registrados. ¡Agrega el primero en el panel izquierdo!
+          No hay usuarios registrados. ¡Agrega el primero en el panel izquierdo!
         </div>
       `;
       return;
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const id = btn.getAttribute('data-id');
         const user = companyUsers.find(u => u.id === id);
         if (user) {
-          formTitle.innerHTML = `<i class="fa-solid fa-user-pen mr-2 text-blue-400"></i>Editar Colaborador`;
+          formTitle.innerHTML = `editar usuario`;
           userIdInput.value = user.id;
           userNameInput.value = user.name;
           userRoleSelect.value = user.role;
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.delete-user-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const id = btn.getAttribute('data-id');
-        if (confirm("¿Estás seguro de que deseas eliminar a este colaborador de la empresa?")) {
+        if (confirm("¿Estás seguro de que deseas eliminar a este usuario de la empresa?")) {
           await deleteUser(id);
         }
       });
@@ -122,16 +122,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         .eq('id', id);
 
       if (error) throw error;
-      showAlert("Colaborador eliminado.");
+      showAlert("Usuario eliminado.");
       loadCompanyUsers();
     } catch (err) {
-      showAlert("Error al borrar colaborador: " + err.message, true);
+      showAlert("Error al borrar usuario: " + err.message, true);
     }
   }
 
   // Cancelar edición
   function resetForm() {
-    formTitle.innerHTML = `<i class="fa-solid fa-user-gear mr-2 text-blue-400"></i>Registrar Miembro`;
+    formTitle.innerHTML = `registrar usuarios`;
     userIdInput.value = "";
     userNameInput.value = "";
     userRoleSelect.value = "";
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           .eq('id', id);
 
         if (error) throw error;
-        showAlert("Colaborador actualizado correctamente.");
+        showAlert("Usuario actualizado correctamente.");
       } else {
         // INSERT
         const { error } = await supabaseClient
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           .insert([payload]);
 
         if (error) throw error;
-        showAlert("¡Colaborador guardado con éxito!");
+        showAlert("¡Usuario guardado con éxito!");
       }
 
       resetForm();
