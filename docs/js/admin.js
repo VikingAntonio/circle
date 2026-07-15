@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 1. Verificar sesión
   if (!checkAdminAuth()) return;
 
+  // Set dynamic admin name
+  const adminNameEl = document.getElementById('admin-name');
+  if (adminNameEl) {
+    try {
+      const sessionData = JSON.parse(localStorage.getItem('rh_admin_session'));
+      if (sessionData && sessionData.username) {
+        adminNameEl.textContent = sessionData.username.split('@')[0];
+      }
+    } catch (e) {}
+  }
+
   // Asegurar que existan datos obligatorios en Supabase
   await ensureDefaultPsychometricExam();
   await ensureDefaultRegistrationForm();
@@ -24,7 +35,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   let selectedExams = []; // [{id, name}]
 
   // LOGOUT
-  document.getElementById('logout-btn').addEventListener('click', () => {
+  document.getElementById('logout-btn').addEventListener('click', async () => {
+    if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+      try {
+        await supabaseClient.auth.signOut();
+      } catch (err) {
+        console.error("Error signing out from Supabase Auth:", err);
+      }
+    }
     localStorage.removeItem('rh_admin_session');
     window.location.href = 'login.html';
   });

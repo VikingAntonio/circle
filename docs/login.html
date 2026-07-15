@@ -22,10 +22,10 @@
     <!-- Header -->
     <div class="text-center mb-8">
       <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mb-4 shadow-inner">
-        <i class="fa-solid fa-user-tie text-2xl"></i>
+        <i id="header-icon" class="fa-solid fa-user-tie text-2xl"></i>
       </div>
-      <h1 class="text-3xl font-bold text-gray-800">Recursos Humanos</h1>
-      <p class="text-gray-500 mt-2">Acceso Administrativo al Panel</p>
+      <h1 id="login-title" class="text-3xl font-bold text-gray-800">Recursos Humanos</h1>
+      <p id="login-subtitle" class="text-gray-500 mt-2">Acceso Administrativo al Panel</p>
     </div>
 
     <!-- Alert dynamic box -->
@@ -34,16 +34,23 @@
       <span id="error-msg">Usuario o contraseña incorrectos.</span>
     </div>
 
+    <!-- Success dynamic box -->
+    <div id="success-alert" class="hidden mb-6 bg-emerald-100 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-2xl flex items-center gap-2 text-sm">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="success-msg">Operación exitosa.</span>
+    </div>
+
     <!-- Login Form -->
     <form id="login-form" class="space-y-6">
       <div>
-        <label class="block text-gray-600 text-sm font-semibold mb-2" for="username">
-          <i class="fa-regular fa-user mr-1 text-blue-400"></i> Usuario
+        <label id="username-label" class="block text-gray-600 text-sm font-semibold mb-2" for="username">
+          <i class="fa-regular fa-envelope mr-1 text-blue-400"></i> Correo Electrónico
         </label>
         <input
           id="username"
-          type="text"
+          type="email"
           required
+          placeholder="ejemplo@correo.com"
           class="w-full px-5 py-3 rounded-2xl border border-blue-200 bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
         >
       </div>
@@ -71,11 +78,17 @@
 
       <button
         type="submit"
+        id="submit-btn"
         class="w-full py-4 bg-blue-400 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg shadow-blue-200 hover:shadow-blue-300 transition-all duration-300 transform active:scale-[0.98]"
       >
         Ingresar al Panel <i class="fa-solid fa-arrow-right ml-2"></i>
       </button>
     </form>
+
+    <!-- Registration Toggle -->
+    <div class="mt-4 text-center text-xs text-gray-400">
+      <button type="button" id="toggle-auth-mode" class="text-blue-500 font-semibold hover:underline">Registrar nuevo administrador</button>
+    </div>
 
     <!-- Footer link -->
     <div class="mt-8 text-center text-xs text-gray-400">
@@ -83,6 +96,10 @@
     </div>
   </div>
 
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Configuración de Supabase -->
+  <script src="js/supabase.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>

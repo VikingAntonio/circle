@@ -1,0 +1,65 @@
+========================================================================
+INSTRUCCIONES PARA LA CREACIÓN Y CONFIGURACIÓN DEL USUARIO ADMINISTRADOR
+========================================================================
+
+Este proyecto ha sido actualizado para utilizar autenticación real con Supabase Auth.
+Sigue cualquiera de los siguientes métodos para crear tu usuario de administrador.
+
+------------------------------------------------------------------------
+MÉTODO 1: Registro directo desde la interfaz del sistema (Fácil y Rápido)
+------------------------------------------------------------------------
+
+Hemos habilitado una opción de registro estética y segura en la misma pantalla de inicio de sesión:
+
+1. Abre el archivo 'docs/login.html' en tu navegador o servidor local.
+2. Haz clic en el enlace que dice "Registrar nuevo administrador" en la parte inferior del formulario.
+3. El formulario cambiará dinámicamente al modo de registro.
+4. Introduce los datos solicitados:
+   - Correo Electrónico: francisco.menutech@gmail.com
+   - Contraseña: Asd123
+5. Haz clic en el botón "Registrarse y Entrar".
+6. El sistema creará la cuenta en Supabase Auth y registrará automáticamente al usuario como Admin con el rol correspondiente.
+7. ¡Listo! Serás redirigido directamente al Panel Administrativo.
+
+Una vez registrado, puedes volver a cambiar al modo "Iniciar Sesión" usando el enlace de la parte inferior para accesos futuros.
+
+------------------------------------------------------------------------
+MÉTODO 2: Creación manual desde el panel de control de Supabase (Súper Seguro)
+------------------------------------------------------------------------
+
+Si prefieres crear el usuario directamente desde la consola oficial de Supabase:
+
+1. Ve a tu panel de Supabase: https://supabase.com/
+2. Selecciona tu proyecto.
+3. En el menú lateral izquierdo, dirígete a: "Authentication" (icono de candado/usuario) -> "Users".
+4. Haz clic en el botón "Add user" (en la esquina superior derecha) y selecciona "Create user".
+5. En el formulario, rellena la siguiente información:
+   - Email: francisco.menutech@gmail.com
+   - Password: Asd123
+   - Asegúrate de dejar activada la opción de "Auto-confirm User" (para no requerir confirmación por correo) si deseas acceder inmediatamente.
+6. En la sección "User Metadata" puedes añadir opcionalmente:
+   - Llave (Key): role
+   - Valor (Value): admin
+7. Haz clic en "Save".
+8. Abre 'docs/login.html' en tu navegador e inicia sesión con el correo francisco.menutech@gmail.com y la contraseña Asd123.
+
+========================================================================
+RECOMENDACIÓN DE SEGURIDAD (CERRAR REGISTRO PÚBLICO)
+========================================================================
+
+Una vez que hayas creado con éxito el usuario de francisco.menutech@gmail.com,
+te recomendamos bloquear los nuevos registros públicos para evitar que personas ajenas
+puedan crear cuentas administrativas.
+
+Para hacer esto, sigue estos sencillos pasos:
+
+1. Ingresa a tu proyecto en la consola de Supabase (https://supabase.com/).
+2. Dirígete a: "Authentication" -> "Providers" -> "Email".
+3. Busca la opción que dice "Confirm email" y "Allow signups" (o "Enable Sign Up").
+4. Desactiva la opción "Allow signups" (Permitir registros).
+5. Guarda los cambios.
+
+De esta manera, el formulario de registro del frontend dejará de aceptar nuevos usuarios
+en la base de datos de Supabase, manteniendo tu panel administrativo 100% protegido,
+mientras que el inicio de sesión para los usuarios ya creados (como Francisco) seguirá
+funcionando a la perfección.
