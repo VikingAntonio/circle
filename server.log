@@ -1,0 +1,4 @@
+127.0.0.1 - - [15/Jul/2026 20:30:33] "HEAD /login.html HTTP/1.1" 200 -
+127.0.0.1 - - [15/Jul/2026 20:31:35] "GET /login.html HTTP/1.1" 200 -
+127.0.0.1 - - [15/Jul/2026 20:31:35] "GET /js/login.js HTTP/1.1" 200 -
+127.0.0.1 - - [15/Jul/2026 20:31:35] "GET /js/supabase.js HTTP/1.1" 200 -

@@ -19,7 +19,7 @@ function checkAdminAuth() {
   }
   try {
     const sessionData = JSON.parse(session);
-    if (sessionData.username === 'Frank' && sessionData.isLoggedIn) {
+    if (sessionData.username && sessionData.isLoggedIn) {
       return true;
     }
   } catch (e) {
